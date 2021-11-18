@@ -1,5 +1,5 @@
 # Ta-Te-Ti
-Proyecto Final de Introduccion a la programacion
+Proyecto Final de Introduccion a la programación
 
 ## Materia 2021
 Introduccion a la programacion
@@ -11,4 +11,4 @@ Universidad del Comahue
 
 **Lück Jorge** - Legajo: - Correo: - Usuario GitHub:
 
-**Alegandra ...** - Legajo: - Correo: - Usuario GitHub:
+**Alegandra Montiel** - Legajo: FAI3086- Correo: maria.montiel@est.fi.uncoma.edu.ar - Usuario alemontielnqn
