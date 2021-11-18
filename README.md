@@ -9,6 +9,6 @@ Universidad del Comahue
 
 **Rubio Facudno** - Lagajo: FAI-3742 - Correo: facundo.rubiio@gmail.com - Usuario GitHub: rubiio044
 
-**Lück Jorge** - Legajo: - Correo: - Usuario GitHub:
+**Lück Jorge** - Legajo: - Correo: luckjor_16@hotmail.com  - Usuario GitHub:
 
 **Alejandra Montiel** - Legajo: FAI3086- Correo: maria.montiel@est.fi.uncoma.edu.ar - Usuario alemontielnqn
