@@ -11,4 +11,4 @@ Universidad del Comahue
 
 **Lück Jorge** - Legajo: - Correo: - Usuario GitHub:
 
-**Alegandra Montiel** - Legajo: FAI3086- Correo: maria.montiel@est.fi.uncoma.edu.ar - Usuario alemontielnqn
+**Alejandra Montiel** - Legajo: FAI3086- Correo: maria.montiel@est.fi.uncoma.edu.ar - Usuario alemontielnqn
