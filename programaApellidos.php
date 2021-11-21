@@ -6,7 +6,7 @@ include_once("tateti.php");
 /**************************************/
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
-/* ... COMPLETAR ... */
+/* Montiel, María Alejandra- Legajo 3086 - TUDW- maria.montiel@est.fi.uncom.edu.ar- alemontielnqn*/
 
 
 
