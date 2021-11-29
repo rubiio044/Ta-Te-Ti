@@ -564,3 +564,6 @@ do {
 
     
 } while ($opcion <> 7);
+
+
+/*ver*/
