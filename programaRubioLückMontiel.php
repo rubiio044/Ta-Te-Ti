@@ -27,7 +27,7 @@ function mostrarJuego ($numeroJuego, $juegos) {
     if ($juegos[$numeroJuego]["puntosCruz"] > $juegos[$numeroJuego]["puntosCirculo"]) {
       
         echo "####################################\n";
-        echo "Juego TATETI: " .$numeroJuego. " (GANO X)  \n";
+        echo "Juego TATETI: " .$numeroJuego. " (GANO ".$juegos[$numeroJuego]["ganador"].")\n";
         echo "Jugador X: ".$juegos[$numeroJuego]["jugadorCruz"]. " obtuvo " .$juegos[$numeroJuego]["puntosCruz"]. " puntos\n";
         echo "Jugador O: ".$juegos[$numeroJuego]["jugadorCirculo"]. " obtuvo " .$juegos[$numeroJuego]["puntosCirculo"]. " puntos\n";
         echo "####################################\n";
@@ -37,7 +37,7 @@ function mostrarJuego ($numeroJuego, $juegos) {
         
 
         echo "####################################\n";
-        echo "Juego TATETI: " .$numeroJuego. " (GANO O)\n";
+        echo "Juego TATETI: " .$numeroJuego. " (GANO ".$juegos[$numeroJuego]["ganador"].")\n";
         echo "Jugador X: " .$juegos[$numeroJuego]["jugadorCruz"]. " obtuvo " .$juegos[$numeroJuego]["puntosCruz"]. " puntos \n";
         echo "Jugador O: ".$juegos[$numeroJuego]["jugadorCirculo"] . " obtuvo " .$juegos[$numeroJuego]["puntosCirculo"]. " puntos \n";
         echo "####################################\n";
@@ -45,7 +45,7 @@ function mostrarJuego ($numeroJuego, $juegos) {
     } else {
       
         echo "####################################\n";
-        echo "Juego TATETI: " .$numeroJuego." (EMPATE)\n";
+        echo "Juego TATETI: " .$numeroJuego." (".$juegos[$numeroJuego]["ganador"].")\n";
         echo "Jugador X: " .$juegos[$numeroJuego]["jugadorCruz"]. " obtuvo " .$juegos[$numeroJuego]["puntosCruz"]. " puntos \n";
         echo "Jugador O: ".$juegos[$numeroJuego]["jugadorCirculo"] . " obtuvo " .$juegos[$numeroJuego]["puntosCirculo"]. " puntos \n";
         echo "####################################\n";
@@ -61,7 +61,7 @@ function mostrarJuego ($numeroJuego, $juegos) {
  *@param int $maximo
  *@return int
  */
-function numerosrankiados ($minimo, $maximo) {
+function numerosRankiados ($minimo, $maximo) {
     do {
         echo "ingrese numeroJuego  " .$minimo. "-" .$maximo. ": ";
         $numeroJuego = trim(fgets(STDIN));
@@ -122,6 +122,7 @@ function cargarJuegos() {
         'jugadorCirculo' => 'juan',
         'puntosCruz' => '2',
         'puntosCirculo' => '0',
+        'ganador' => 'X',
         
     ];
 
@@ -130,6 +131,7 @@ function cargarJuegos() {
         'jugadorCirculo' => 'alejandra',
         'puntosCruz' => '0',
         'puntosCirculo' => '4',
+        'ganador' => 'O',
         
 
     ];
@@ -139,6 +141,7 @@ function cargarJuegos() {
         'jugadorCirculo' => 'facundo',
         'puntosCruz' => '1',
         'puntosCirculo' => '1',
+        'ganador' => 'EMPATE',
         
     ];
 
@@ -147,7 +150,7 @@ function cargarJuegos() {
         'jugadorCirculo' => 'hector',
         'puntosCruz' => '1',
         'puntosCirculo' => '1',
-       
+        'ganador' => 'EMPATE',
     ];
 
     $juegos[4] = [ 
@@ -155,7 +158,7 @@ function cargarJuegos() {
         'jugadorCirculo' => 'hector',
         'puntosCruz' => '2',
         'puntosCirculo' => '0',
-        
+        'ganador' => 'X',
     ];
 
     $juegos[5] = [ 
@@ -163,8 +166,7 @@ function cargarJuegos() {
         'jugadorCirculo' => 'jorge',
         'puntosCruz' => '0',
         'puntosCirculo' => '5',
-        
-        
+        'ganador' => 'O',
     ];
 
     $juegos[6] = [ 
@@ -172,7 +174,7 @@ function cargarJuegos() {
         'jugadorCirculo' => 'alejandra',
         'puntosCruz' => '0',
         'puntosCirculo' => '3',
-        
+        'ganador' => 'O',
     ];
 
     $juegos[7] = [ 
@@ -180,7 +182,7 @@ function cargarJuegos() {
         'jugadorCirculo' => 'hector',
         'puntosCruz' => '1',
         'puntosCirculo' => '1',
-        
+        'ganador' => 'EMPATE',
     ];
 
     $juegos[8] = [ 
@@ -188,7 +190,7 @@ function cargarJuegos() {
         'jugadorCirculo' => 'jorge',
         'puntosCruz' => '0',
         'puntosCirculo' => '3',
-       
+        'ganador' => 'O',
     ];
 
     $juegos[9] = [ 
@@ -196,14 +198,14 @@ function cargarJuegos() {
         'jugadorCirculo' => 'alejandra',
         'puntosCruz' => '1',
         'puntosCirculo' => '1',
-   
+        'ganador' => 'EMPATE',
     ];
     $juegos[10] = [ 
         'jugadorCruz' => 'juan',
         'jugadorCirculo' => 'alejandra',
         'puntosCruz' => '0',
         'puntosCirculo' => '3',
-   
+        'ganador' => 'O',
     ];
 
     return $juegos;
@@ -218,31 +220,37 @@ function guardar0($juego){
     /**Ejecuta la funcion jugar() y tetorna el array $juego */
     include_once("tateti.php");
     $juego = jugar();
+    imprimirResultado($juego);
     return $juego;   
 }
 function guardar1($juego){
     include_once("tateti.php");
     $juego = jugar();
+    imprimirResultado($juego);
     return $juego;   
 }
 function guardar2($juego){
     include_once("tateti.php");
     $juego = jugar();
+    imprimirResultado($juego);
     return $juego;   
 }
 function guardar3($juego){
     include_once("tateti.php");
     $juego = jugar();
+    imprimirResultado($juego);
     return $juego;   
 }
 function guardar4($juego){
     include_once("tateti.php");
     $juego = jugar();
+    imprimirResultado($juego);
     return $juego;   
 }
 function guardar5($juego){
     include_once("tateti.php");
     $juego = jugar();
+    imprimirResultado($juego);
     return $juego;   
 }
 /**Luego que se almacena los datos del juego, estos entran en la siguiente funcion
@@ -345,8 +353,30 @@ function primerJuego($usuario,$jugadorX0,$jugadorO0,$memoria0,$jugadorX1,$jugado
     }
     return $primerJuego;
 }
+function porcentaje($simbolo){
+    if ($simbolo == "O") {
+        $ciclos = 0; 
+        do {
+            $juegosCirculo = 0;
 
+            $juegosG = cargarJuegos();
 
+            if ($juegosG[$ciclos]['ganador'] == "O") {
+
+                $juegosCirculo = $juegosCirculo + 1;
+            }
+            $ciclos = $ciclos + 1;
+
+        } while ($ciclos <= 10);
+
+        $juegosTotales =  count($juegosG);
+
+        $porsentajeTotal = round(($juegosCirculo * 100) / $juegosTotales,2);
+
+        return $porsentajeTotal;
+    }
+
+} 
 
 
 
@@ -370,7 +400,7 @@ $juegosGuardados = cargarJuegos();
 
 
 do {
-    $opcion = seleccionarOpcion();
+    $opcion=seleccionarOpcion();
 
     
     switch ($opcion) {
@@ -401,30 +431,9 @@ do {
             $jugadorO4 = "";
             $jugadorX5 = "";
             $jugadorO5 = "";
-            /**Este apartado ejecuta el juego para cada funcion "guardadoN"
-             * @param int $partida
-             * @param array $memoria0
-             * @param array $memoria1
-             * @param array $memoria2
-             * @param array $memoria3
-             * @param array $memoria4
-             * @param array $memoria5
-             * @param string $jugadorX0
-             * @param string $jugadorO0
-             * @param string $jugadorX1
-             * @param string $jugadorO1
-             * @param string $jugadorX2
-             * @param string $jugadorO2
-             * @param string $jugadorX3
-             * @param string $jugadorO3
-             * @param string $jugadorX4
-             * @param string $jugadorO4
-             * @param string $jugadorX5
-             * @param string $jugadorO5
-             */
-        do {
+            do {
             $partida = $partida + 1;
-    
+        
             //**Las variables "memoriaN" son arrays asociativos que ejecutan su respectiva funcion "guardarN" y almacena un juego realizado */
             if ($partida == 1) {
                 //Cuando "$partida = 1" el archivo tateti.php se ejecuta para la funcion guardar0()
@@ -436,53 +445,44 @@ do {
                 /**La accion "next()" desplaza al puntero al la clave del segundo elemento, 
                  * esto es para almacenar la clave del array como un valor en una variable*/
             }elseif ($partida == 2) {
-
                 $memoria1 = guardar1($juego);
-    
+        
                 $jugadorX1 = current($memoria1);
                 $jugadorO1 = next($memoria1);
                 $jugadorO1 = current($memoria1);
-    
+        
             }elseif ($partida == 3) {
-
                 $memoria2 = guardar2($juego);
-    
+        
                 $jugadorX2 = current($memoria2);
                 $jugadorO2 = next($memoria2);
                 $jugadorO2 = current($memoria2);
-    
+        
             }elseif ($partida == 4) {
-
                 $memoria3 = guardar3($juego);
-            
+                
                 $jugadorX3 = current($memoria3);
                 $jugadorO3 = next($memoria3);
                 $jugadorO3 = current($memoria3);
-    
+        
             }elseif ($partida == 5) {
-
                 $memoria4 = guardar4($juego);
-    
+        
                 $jugadorX4 = current($memoria4);
                 $jugadorO4 = next($memoria4);
                 $jugadorO4 = current($memoria4);
-    
+        
             }elseif ($partida == 6) {
-
                 $memoria5 = guardar5($juego);
-    
+        
                 $jugadorX5 = current($memoria5);
                 $jugadorO5 = next($memoria5);
                 $jugadorO5 = current($memoria5);
             }
-            //***El repetidor debe ir dentro de la cacilla "Jugar(1)" para que el resto del programa funciones***
     
-            imprimirResultado($juegoNuevo);
-            echo "Volver a jugar?(s/n): ";
-            $sn = trim(fgets(STDIN)); 
-        
-        } while ($sn == "s");
-          
+            $VolverJuagar = "n";
+            
+        } while ($VolverJuagar == "s");
 
             break;
         case 2: 
@@ -490,7 +490,7 @@ do {
             if (count($juegosGuardados) > 0) {
                 $masChico = 0;
                 $masGrande = (count($juegosGuardados) - 2);
-                $juegoNumero = numerosrankiados($masChico, $masGrande);
+                $juegoNumero = numerosRankiados($masChico, $masGrande);
                 // si el numero esta entre los numeros solicitados 
                 //accedera a mostrar el juego solicitado
                  mostrarJuego($juegoNumero, $juegosGuardados);
@@ -510,7 +510,15 @@ do {
             echo "\n".$primerJuegoGanado."\n";
 
             break;
-        
-            //...
+        case 4: 
+            echo "Ingrese un simbolo: ";
+            $simbolo = strtoupper(trim(fgets(STDIN)));
+            $porcentajeCirculo = porcentaje($simbolo);
+            echo "\n".$porcentajeCirculo."\n";
+
+            
+            
+
+
     }
 } while ($opcion <> 7);
