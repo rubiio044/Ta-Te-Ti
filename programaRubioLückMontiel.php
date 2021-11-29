@@ -377,6 +377,28 @@ function porcentaje($simbolo){
     }
 
 } 
+/**
+ * Este módulo recibe los juegos guardados y 
+ * los ordena alfabéticamente  solo del jugador O
+ * @param array $juegosGuardados
+ * @return void
+ */
+function  juegosDeOalfabeticamente($juegosGuardados) {
+
+    uasort ($juegosGuardados, 'JugadorCirculo');
+    print_r ($juegosGuardados);
+}
+/**
+ * Devuelve < 0 si str1 es menor que str2; > 
+ * 0 si str1 es mayor que str2 y 0 si son iguales.
+ * @param array $str1, $str2
+ */
+function JugadorCirculo ($str1, $str2) {
+
+    //la funcion strcmp Comparación de string segura a nivel binario
+    $jugadorO = strcmp($str1['jugadorCirculo'], $str2['jugadorCirculo']);
+    return $jugadorO;
+}
 
 
 
@@ -515,10 +537,30 @@ do {
             $simbolo = strtoupper(trim(fgets(STDIN)));
             $porcentajeCirculo = porcentaje($simbolo);
             echo "\n".$porcentajeCirculo."\n";
+            case 5: 
 
+                echo "laasfa264226442662sfasfasflalla";
+                //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+    
+                break;
+                case 6: 
+                    // muestra juegos ordenados del jugador O alfabeticamente
+                    // 
+                     juegosDeOalfabeticamente ($juegosGuardados);
+        
+                    break;
+                    case 7: 
+
+                        echo "juego finalizado";
+                        //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            
+                        break;
+    
+        
+}
             
             
 
 
-    }
+    
 } while ($opcion <> 7);
