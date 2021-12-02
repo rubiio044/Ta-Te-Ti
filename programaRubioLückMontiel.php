@@ -34,9 +34,23 @@ function cargarJuegos() {
         $juegos[7] = ['jugadorCruz' => 'JUAN','jugadorCirculo' => 'HECTOR','puntosCruz' => 1,'puntosCirculo' => 1];
         $juegos[8] = ['jugadorCruz' => 'FACUNDO', 'jugadorCirculo' => 'JORGE', 'puntosCruz' => 0, 'puntosCirculo' => 3];
         $juegos[9] = ['jugadorCruz' => 'JUAN','jugadorCirculo' => 'ALEJANDRA', 'puntosCruz'=> 1,'puntosCirculo' => 1];
-   
+        
+        $juegos = [];
+
+        $jg1 = ["jugadorCruz" => "AMARILIS", "jugadorCirculo" => "MILOS",    "puntosCruz" => 1, "puntosCirculo" => 1];
+        $jg2 = ["jugadorCruz" => "ZENDA",    "jugadorCirculo" => "AMARILIS", "puntosCruz" => 3, "puntosCirculo" => 0];
+        $jg3 = ["jugadorCruz" => "ZENDA",    "jugadorCirculo" => "MILOS",    "puntosCruz" => 0, "puntosCirculo" => 4];
+        $jg4 = ["jugadorCruz" => "CALIXTO",  "jugadorCirculo" => "TRUMAN",   "puntosCruz" => 1, "puntosCirculo" => 1];
+        $jg5 = ["jugadorCruz" => "AMARILIS", "jugadorCirculo" => "MILOS",    "puntosCruz" => 5, "puntosCirculo" => 0];
+        $jg6 = ["jugadorCruz" => "FEDORA",   "jugadorCirculo" => "CALIXTO",  "puntosCruz" => 0, "puntosCirculo" => 3];
+        $jg7 = ["jugadorCruz" => "TRUMAN",   "jugadorCirculo" => "AMARILIS", "puntosCruz" => 4, "puntosCirculo" => 0];
+        $jg8 = ["jugadorCruz" => "CALIXTO",  "jugadorCirculo" => "TRUMAN",   "puntosCruz" => 1, "puntosCirculo" => 1];
+        $jg9 = ["jugadorCruz" => "TRUMAN",   "jugadorCirculo" => "FEDORA",   "puntosCruz" => 2, "puntosCirculo" => 0];
+        $jg10= ["jugadorCruz" => "MILOS",    "jugadorCirculo" => "ZENDA",   "puntosCruz" => 1, "puntosCirculo" => 1];
+
+        array_push($juegos, $jg1, $jg2, $jg3, $jg4, $jg5, $jg6, $jg7, $jg8, $jg9, $jg10);
+
         return $juegos;
-        print_r($juegos);
     }
 
 /**
@@ -281,23 +295,22 @@ return $simboloValido;
   * @param string $simbolo
   * @return int
   */  
-function ganadosPorSimbolo($cleccionJuegos,$simbolo){
+function ganadosPorSimbolo($juegosGuardados,$simbolo){
 //int $ganadosXCruz, $ganadadosXCirculo, $ganadosPorSimbolo, $ganadosXCirculo
   $ganadosXCruz = 0;
   $ganadadosXCirculo = 0;
-  $ganadosXSimbolo = 0;
-  $i = 0;
- 
-do {
-    if ($cleccionJuegos[$i]['puntosCruz'] > $cleccionJuegos[$i]['puntosCirculo']){
+  $ganadosPorSimbolo = 0;
+  
+
+ for ($i=0; $i < count($juegosGuardados); $i++) { 
+    if ($juegosGuardados[$i]['puntosCruz'] > $juegosGuardados[$i]['puntosCirculo']){
         $ganadosXCruz = $ganadosXCruz + 1;
        
-    }elseif ($cleccionJuegos[$i]['puntosCruz'] < $cleccionJuegos[$i]['puntosCirculo']) {
+    }elseif ($juegosGuardados[$i]['puntosCruz'] < $juegosGuardados[$i]['puntosCirculo']) {
         $ganadadosXCirculo = $ganadadosXCirculo + 1;
        
     }
-  $i = $i + 1;
-} while ($i < count($cleccionJuegos));
+ }
  
 if ($simbolo == "X") {
     $ganadosPorSimbolo = $ganadosXCruz;
@@ -346,22 +359,22 @@ function jugadorCirculo ($str1, $str2) {
  * @param array $juegos
  * @return float
  */  
-function calcPorcentaje($simbolo,$juegos){
+function calcPorcentaje($simbolo,$juegosGuardados){
      // int $totalJuegosGanados,$cantGanadosPorSimbolo
      // float $porcentaje
      do {
         if ($simbolo == "X" || $simbolo == "O") {
-            $cantGanadosPorSimbolo = ganadosPorSimbolo($juegos,$simbolo);
+            $cantGanadosPorSimbolo = ganadosPorSimbolo($juegosGuardados,$simbolo);
         }else {
             echo "Símbolo Incorrecto!! Intente nuevamente: ";
             $simbolo = strtoupper(trim(fgets(STDIN)));
             if ($simbolo == "X" || $simbolo == "O") {
-                $cantGanadosPorSimbolo = ganadosPorSimbolo($juegos,$simbolo);
+                $cantGanadosPorSimbolo = ganadosPorSimbolo($juegosGuardados,$simbolo);
             }
         }
     } while (!($simbolo == "X" || $simbolo == "O"));
 
-    $totalJuegosGanados = cantidadJuegosGanados($juegos);//Modulo 9
+    $totalJuegosGanados = cantidadJuegosGanados($juegosGuardados);//Modulo 9
 
     $porcentaje = round(($cantGanadosPorSimbolo * 100)/$totalJuegosGanados);
     return $porcentaje;
@@ -472,7 +485,7 @@ do {
 
             echo "Ingrese un símbolo: ";
             $simbolo = strtoupper(trim(fgets(STDIN)));
-            $porcentajeJuegosGanados = calcPorcentaje($simbolo,$juegos);//Módulo 13.
+            $porcentajeJuegosGanados = calcPorcentaje($simbolo,$juegosGuardados);//Módulo 13.
             
             echo "\n#############################\n";
             echo " El porcentaje es de juegos ganados por el símbolo ". $simbolo. "es ". $porcentajeJuegosGanados."%\n";
