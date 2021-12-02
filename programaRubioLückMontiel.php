@@ -6,16 +6,17 @@ include_once("tateti.php");
 /**************************************/
  
 /* Apellido, Nombre. Legajo. Carrera. mail. Github */
-/* Rubio, Facudno - Lagajo: FAI-3742 - Correo: facundo.rubiio@gmail.com - Usuario GitHub: rubiio044
-Lück, Jorge - Legajo:FAI-3742 - Correo: luckjor_16@hotmail.com - Usuario GitHub: luckjor
+/* Rubio, Facundo - Lagajo: FAI-3742 - Correo: facundo.rubiio@gmail.com - Usuario GitHub: rubiio044
+Lück, Jorge - Legajo:FAI-3743 - Correo: luckjor_16@hotmail.com - Usuario GitHub: luckjor
 Montiel, M. Alejandra - Legajo: FAI-3086 - Correo: maria.montiel@est.fi.uncoma.edu.ar - Usuario GitHub: alemontielnqn */
  
 /**************************************/
 /***** DEFINICIÓN DE FUNCIONES ********/
 /**************************************/
+
  
 /**
-* Módulo 1
+ * Módulo 1
  * Crea una estructura de datos para almacenar juegos
  * @param void
  * @return array
@@ -35,8 +36,9 @@ function cargarJuegos() {
         $juegos[9] = ['jugadorCruz' => 'JUAN','jugadorCirculo' => 'ALEJANDRA', 'puntosCruz'=> 1,'puntosCirculo' => 1];
    
         return $juegos;
+        print_r($juegos);
     }
- 
+
 /**
 * Módulo 2
 * Muestra el menú de opciones y retorna la opción seleccionada
@@ -70,7 +72,7 @@ function seleccionarOpcion() {
  * @param int $minimo
  * @param int $maximo
  * @return int
- */
+*/
 function rangoValores($minimo, $maximo) {
   //int $numeroJuego
     do {
@@ -89,7 +91,7 @@ echo "Vuelva a intentar.\n";
 /**
  * Módulo 4
  * Esta función solicita un juego y lo muestra
- * @param int $numeroJuegoCargado
+ * @param int $numeroJuego
  * @param array $juegos
  * @return void
  */
@@ -317,18 +319,18 @@ if ($simbolo == "X") {
  */
 function juegosDeOalfabeticamente($juegos) {
  
-    uasort ($juegos, 'JugadorCirculo'); 
+    uasort ($juegos, 'jugadorCirculo'); 
     print_r ($juegos);
 }  
  
 /**
  * Módulo 12 
- * Función de comparación string que usa la función uasort
+ * comparación string que usa la función uasort
  * Devuelve < 0 si str1 es menor que str2; >
-* 0 si str1 es mayor que str2 y 0 si son iguales.
-* @param array $str1, $str2
+ * 0 si str1 es mayor que str2 y 0 si son iguales.
+ * @param array $str1, $str2
  */
-function JugadorCirculo ($str1, $str2) {
+function jugadorCirculo ($str1, $str2) {
 //$jugadorO
     //la funcion strcmp Comparación de string segura a nivel binario
     $jugadorO = strcmp($str1['jugadorCirculo'], $str2['jugadorCirculo']);
@@ -340,28 +342,28 @@ function JugadorCirculo ($str1, $str2) {
  
 /**
  * Módulo 13
- * Esta función muestra el porcentaje de juegos ganados
+ * Muestra el porcentaje de juegos ganados
  * @param array $juegos
  * @return float
  */  
 function calcPorcentaje($simbolo,$juegos){
-     // int $ciclos, $totalJuegosGanados,$resultado
+     // int $totalJuegosGanados,$cantGanadosPorSimbolo
      // float $porcentaje
      do {
         if ($simbolo == "X" || $simbolo == "O") {
-            $resultado = ganadosPorSimbolo($juegos,$simbolo);
+            $cantGanadosPorSimbolo = ganadosPorSimbolo($juegos,$simbolo);
         }else {
-            echo "Numero Incorrecto!! Intente nuevamente: ";
+            echo "Símbolo Incorrecto!! Intente nuevamente: ";
             $simbolo = strtoupper(trim(fgets(STDIN)));
             if ($simbolo == "X" || $simbolo == "O") {
-                $resultado = ganadosPorSimbolo($juegos,$simbolo);
+                $cantGanadosPorSimbolo = ganadosPorSimbolo($juegos,$simbolo);
             }
         }
     } while (!($simbolo == "X" || $simbolo == "O"));
 
     $totalJuegosGanados = cantidadJuegosGanados($juegos);//Modulo 9
 
-    $porcentaje = round(($resultado * 100)/$totalJuegosGanados);
+    $porcentaje = round(($cantGanadosPorSimbolo * 100)/$totalJuegosGanados);
     return $porcentaje;
     }
 
@@ -396,7 +398,7 @@ function existeJugador($jugador,$juegosGuardados){
 /*    
  array: $juegosGuardados, $resumen, 
  float: $porcentajeJuegosGanados, 
- int: $opcion, $masChico, $masGrande, $juegoNumero, $indiceGanador,  $mostrarResultado, $totalJuegosGanados,  $i, $indice
+ int: $opcion, $masChico, $masGrande, $numeroJuego, $indiceGanador,  $mostrarResultado, $totalJuegosGanados,  $i, $indice
  string: $nombreUsuario, $primerGanador, $simbolo, $jugador, 
  boolean: $bandera
 */                    
@@ -416,8 +418,12 @@ do {
     $opcion = seleccionarOpcion();
     $juegos = cargarJuegos();
  
-   
-    switch ($opcion) {
+   /*La sentencia switch es similar a una serie de sentencias IF en la misma expresión. 
+   En muchas ocasiones, es posible que se quiera comparar la misma variable (o expresión) 
+   con muchos valores diferentes, y ejecutar una parte de código distinta dependiendo de a que valor es igual. 
+   Para esto es exactamente la expresión switch. */
+
+    switch ($opcion) { 
         case 1:
  		    //Juega al Tateti
             //invocamos a la func de la galería tateti
@@ -432,12 +438,12 @@ do {
             break;
         case 2:
             // Solicita un número dentro de un rango válido y lo muestra
-                $masChico = 1;
-                $masGrande = count($juegosGuardados);
+                $masChico = 0;
+                $masGrande = count($juegosGuardados)-1;
             if (count($juegosGuardados) > 0) {
-                $juegoNumero = rangoValores($masChico, $masGrande); //Modulo 3.
+                $numeroJuego = rangoValores($masChico, $masGrande); //Modulo 3.
                 //Si el numero esta dentro del rango muestra el juego solicitado.
-                 mostrarJuego($juegoNumero, $juegosGuardados); //Módulo 4
+                 mostrarJuego($numeroJuego, $juegosGuardados); //Módulo 4
             } else {
                 echo "\nNúmero inválido!!\n";              
             }
@@ -469,7 +475,7 @@ do {
             $porcentajeJuegosGanados = calcPorcentaje($simbolo,$juegos);//Módulo 13.
             
             echo "\n#############################\n";
-            echo " El porcentaje es ".$porcentajeJuegosGanados."%\n";
+            echo " El porcentaje es de juegos ganados por el símbolo ". $simbolo. "es ". $porcentajeJuegosGanados."%\n";
             echo "#############################\n";
             break;
  
@@ -502,9 +508,9 @@ do {
               break;
      
         case 7:
- 
-              echo "juego finalizado";
-                        //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            //Finaliza el juego
+              echo "Juego finalizado";
+                        
            
               break;
     }
